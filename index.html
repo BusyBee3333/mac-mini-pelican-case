@@ -29,9 +29,9 @@
   /* 3D VIEWER */
   .viewer-section { margin: 40px 0; }
   .viewer-section h2 { font-size: 1.4em; color: #fff; margin-bottom: 15px; text-align: center; }
-  #viewer { width: 100%; height: 480px; background: #0d0d0d; border-radius: 16px; border: 1px solid #1a1a1a; position: relative; overflow: hidden; touch-action: none; }
+  #viewer { width: 100%; height: 480px; background: linear-gradient(180deg, #e8eaf0 0%, #c8ccd4 50%, #a0a8b8 100%); border-radius: 16px; border: 1px solid #1a1a1a; position: relative; overflow: hidden; touch-action: none; }
   #viewer canvas { touch-action: none; }
-  #viewer-hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #444; font-size: 0.82em; pointer-events: none; z-index: 10; }
+  #viewer-hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #666; font-size: 0.82em; pointer-events: none; z-index: 10; text-shadow: 0 1px 2px rgba(255,255,255,0.5); }
   .viewer-controls { display: flex; gap: 8px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
   .vbtn { background: #141414; border: 1px solid #252525; color: #999; padding: 8px 20px; border-radius: 10px; cursor: pointer; font-size: 0.88em; transition: all 0.2s; font-family: inherit; }
   .vbtn:hover { background: #1a1a1a; border-color: #444; color: #fff; }
@@ -172,20 +172,20 @@
         <div class="desc">No port holes, no ventilation — this is a transport case, not an operating enclosure</div>
       </div>
       <div class="feat">
-        <div class="label">Pelican-Style Latches</div>
-        <div class="desc">Two front snap latches with pivoting arms — secure positive closure</div>
+        <div class="label">Ergonomic Snap Latches</div>
+        <div class="desc">3.5mm thick latch arms with finger scoops — easy one-handed open, secure positive closure</div>
       </div>
       <div class="feat">
-        <div class="label">Piano Hinges</div>
-        <div class="desc">Interlocking knuckle hinges on the rear accept M2.5 pin rod for smooth open/close</div>
+        <div class="label">Printable Piano Hinges</div>
+        <div class="desc">Interlocking knuckle hinges with support ramps — prints flat without supports, accepts M2.5 pin rod</div>
       </div>
       <div class="feat">
-        <div class="label">Bolted Arch Handle</div>
-        <div class="desc">Separate printed piece with comfort grip grooves — mounts with M4 bolts through lid</div>
+        <div class="label">Ergonomic Arch Handle</div>
+        <div class="desc">30mm finger clearance, 16mm wide grip with comfort grooves — mounts with M4 bolts + hex nut counterbore</div>
       </div>
       <div class="feat">
-        <div class="label">Interior Cradle Ribs</div>
-        <div class="desc">Precision support rails hold the Mac Mini centred — no foam needed</div>
+        <div class="label">Rounded Cradle Pads</div>
+        <div class="desc">Wide rounded support pads (not sharp ribs) — won't scratch your Mac Mini, holds it centred securely</div>
       </div>
       <div class="feat">
         <div class="label">Pressure Equalization</div>
@@ -257,14 +257,14 @@ let currentView = 'bottom';
 const viewer = document.getElementById('viewer');
 
 const MODELS = {
-  bottom: { file: 'pelican_bottom.stl', color: 0x2a2a2a, offset: [0, 0, 0] },
-  lid:    { file: 'pelican_lid.stl',    color: 0x3a3a3a, offset: [0, 0, 0] },
-  handle: { file: 'pelican_handle.stl', color: 0x555555, offset: [0, 0, 0] },
+  bottom: { file: 'pelican_bottom.stl', color: 0x1a1a1a, offset: [0, 0, 0] },
+  lid:    { file: 'pelican_lid.stl',    color: 0x252525, offset: [0, 0, 0] },
+  handle: { file: 'pelican_handle.stl', color: 0x333333, offset: [0, 0, 0] },
 };
 
 function init() {
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0d0d0d);
+  scene.background = new THREE.Color(0xd0d4dc);
 
   camera = new THREE.PerspectiveCamera(40, viewer.clientWidth / viewer.clientHeight, 0.1, 2000);
   camera.position.set(200, 150, 200);
@@ -289,23 +289,27 @@ function init() {
   renderer.domElement.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
   renderer.domElement.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
-  // Lighting — dramatic studio setup
-  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+  // Lighting — bright studio for visibility
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
 
-  const key = new THREE.DirectionalLight(0xffffff, 1.0);
+  const key = new THREE.DirectionalLight(0xffffff, 1.2);
   key.position.set(120, 250, 180);
   scene.add(key);
 
-  const fill = new THREE.DirectionalLight(0x6677ff, 0.35);
+  const fill = new THREE.DirectionalLight(0xddeeff, 0.5);
   fill.position.set(-150, 80, -100);
   scene.add(fill);
 
-  const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.6);
   rim.position.set(0, -80, -150);
   scene.add(rim);
 
-  // Subtle floor grid
-  const grid = new THREE.GridHelper(300, 30, 0x181818, 0x141414);
+  const bottom = new THREE.DirectionalLight(0xffffff, 0.3);
+  bottom.position.set(0, -200, 100);
+  scene.add(bottom);
+
+  // Floor grid on light background
+  const grid = new THREE.GridHelper(300, 30, 0x999999, 0xbbbbbb);
   grid.position.y = -30;
   scene.add(grid);
 
@@ -319,10 +323,11 @@ function init() {
       geo.computeVertexNormals();
       const mat = new THREE.MeshPhysicalMaterial({
         color: cfg.color,
-        roughness: 0.65,
-        metalness: 0.1,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.4,
+        roughness: 0.4,
+        metalness: 0.15,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.3,
+        envMapIntensity: 1.0,
       });
       const mesh = new THREE.Mesh(geo, mat);
       geo.computeBoundingBox();
