@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mac Mini M4 Pelican Case — Luxury Carrying Case</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 940px; margin: 0 auto; padding: 20px; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 50px 0 30px; }
+  .hero .badge { display: inline-block; background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #2a2a4a; border-radius: 20px; padding: 6px 18px; font-size: 0.8em; color: #7c8aff; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-size: 2.4em; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .sub { color: #777; font-size: 1.1em; max-width: 500px; margin: 0 auto; }
+
+  /* IMAGE GALLERY */
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 30px 0; }
+  .gallery img { width: 100%; border-radius: 14px; border: 1px solid #1a1a1a; cursor: pointer; transition: transform 0.3s, border-color 0.3s; }
+  .gallery img:hover { transform: scale(1.02); border-color: #333; }
+
+  /* SPECS BAR */
+  .specs-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 30px 0; }
+  .spec { background: #111; border: 1px solid #1e1e1e; border-radius: 12px; padding: 18px 14px; text-align: center; }
+  .spec .val { font-size: 1.5em; font-weight: 700; color: #fff; }
+  .spec .unit { font-size: 0.75em; color: #555; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* 3D VIEWER */
+  .viewer-section { margin: 40px 0; }
+  .viewer-section h2 { font-size: 1.4em; color: #fff; margin-bottom: 15px; text-align: center; }
+  #viewer { width: 100%; height: 480px; background: #0d0d0d; border-radius: 16px; border: 1px solid #1a1a1a; position: relative; overflow: hidden; touch-action: none; }
+  #viewer canvas { touch-action: none; }
+  #viewer-hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #444; font-size: 0.82em; pointer-events: none; z-index: 10; }
+  .viewer-controls { display: flex; gap: 8px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
+  .vbtn { background: #141414; border: 1px solid #252525; color: #999; padding: 8px 20px; border-radius: 10px; cursor: pointer; font-size: 0.88em; transition: all 0.2s; font-family: inherit; }
+  .vbtn:hover { background: #1a1a1a; border-color: #444; color: #fff; }
+  .vbtn.active { background: #1a1a3a; border-color: #4f5aff; color: #8b93ff; }
+
+  /* DOWNLOADS */
+  .downloads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 40px 0; }
+  .dl-card { background: #111; border: 1px solid #1e1e1e; border-radius: 14px; padding: 24px 18px; text-align: center; transition: all 0.25s; }
+  .dl-card:hover { border-color: #4f5aff; background: #0f0f1f; transform: translateY(-2px); }
+  .dl-card h3 { color: #fff; font-size: 1.05em; margin-bottom: 4px; }
+  .dl-card .dims { color: #666; font-size: 0.82em; margin-bottom: 4px; }
+  .dl-card .meta { color: #555; font-size: 0.78em; margin-bottom: 16px; }
+  .dl-btn { display: inline-block; background: linear-gradient(135deg, #3b4aff, #5b6aff); color: #fff; padding: 10px 26px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9em; transition: all 0.2s; border: none; }
+  .dl-btn:hover { background: linear-gradient(135deg, #4f5aff, #6b7aff); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,90,255,0.3); }
+
+  /* FEATURES */
+  .features { margin: 40px 0; }
+  .features h2 { font-size: 1.4em; color: #fff; margin-bottom: 20px; text-align: center; }
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feat { background: #111; border: 1px solid #1a1a1a; border-radius: 12px; padding: 18px; transition: border-color 0.2s; }
+  .feat:hover { border-color: #2a2a4a; }
+  .feat .icon { font-size: 1.3em; margin-bottom: 4px; }
+  .feat .label { color: #fff; font-weight: 600; font-size: 0.95em; }
+  .feat .desc { color: #777; font-size: 0.83em; margin-top: 3px; }
+
+  /* INSTRUCTIONS */
+  .instructions { background: #0d0d12; border: 1px solid #1a1a2a; border-radius: 16px; padding: 32px; margin: 40px 0; }
+  .instructions h2 { color: #fff; margin-bottom: 22px; font-size: 1.4em; }
+  .instructions h3 { color: #7c8aff; margin: 22px 0 10px; font-size: 1em; }
+  .instructions ul { list-style: none; padding: 0; }
+  .instructions li { padding: 5px 0 5px 22px; position: relative; color: #bbb; font-size: 0.92em; }
+  .instructions li::before { content: '~'; position: absolute; left: 0; color: #4f5aff; font-weight: 700; }
+  .instructions .warn { background: #1a1800; border: 1px solid #3a3300; border-radius: 10px; padding: 14px 18px; margin: 16px 0; color: #f0c040; font-size: 0.9em; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 40px 0 30px; border-top: 1px solid #151515; margin-top: 40px; }
+  .footer p { color: #444; font-size: 0.85em; }
+  .footer .highlight { color: #7c8aff; }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100; justify-content: center; align-items: center; cursor: zoom-out; }
+  .lightbox.show { display: flex; }
+  .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+
+  @media (max-width: 680px) {
+    .hero h1 { font-size: 1.7em; }
+    .gallery { grid-template-columns: 1fr; }
+    .specs-bar { grid-template-columns: 1fr 1fr; }
+    .downloads { grid-template-columns: 1fr; }
+    .feat-grid { grid-template-columns: 1fr; }
+    #viewer { height: 360px; }
+    .container { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <div class="badge">Pelican Edition</div>
+    <h1>Mac Mini M4 — Luxury Carrying Case</h1>
+    <p class="sub">Fully sealed Pelican-style hard case with debossed Apple logo. No ports, no vents — pure transport protection.</p>
+  </div>
+
+  <div class="gallery">
+    <img src="pelican-v2-closed.png" alt="Closed case" onclick="openLightbox(this)">
+    <img src="pelican-v2-open.png" alt="Open case with Mac Mini" onclick="openLightbox(this)">
+  </div>
+
+  <div class="specs-bar">
+    <div class="spec">
+      <div class="val">135.4</div>
+      <div class="unit">mm width</div>
+    </div>
+    <div class="spec">
+      <div class="val">135.4</div>
+      <div class="unit">mm depth</div>
+    </div>
+    <div class="spec">
+      <div class="val">58.4</div>
+      <div class="unit">mm height</div>
+    </div>
+    <div class="spec">
+      <div class="val">3</div>
+      <div class="unit">pieces</div>
+    </div>
+  </div>
+
+  <div class="viewer-section">
+    <h2>Interactive 3D Preview</h2>
+    <div id="viewer">
+      <div id="viewer-hint">drag to rotate &bull; scroll to zoom</div>
+    </div>
+    <div class="viewer-controls">
+      <button class="vbtn active" data-model="bottom" onclick="showModel('bottom')">Bottom</button>
+      <button class="vbtn" data-model="lid" onclick="showModel('lid')">Lid</button>
+      <button class="vbtn" data-model="handle" onclick="showModel('handle')">Handle</button>
+      <button class="vbtn" data-model="all" onclick="showModel('all')">All Parts</button>
+      <button class="vbtn" onclick="resetCamera()">Reset View</button>
+    </div>
+    <img src="pelican_preview_closed.png" alt="Preview" style="display:none;width:100%;border-radius:14px;margin-top:15px;" id="fallback-img">
+  </div>
+
+  <div class="downloads">
+    <div class="dl-card">
+      <h3>Bottom Half</h3>
+      <div class="dims">135.4 &times; 135.4 &times; 36.2 mm</div>
+      <div class="meta">348 KB &bull; Watertight &#10003;</div>
+      <a href="pelican_bottom.stl" download class="dl-btn">Download STL</a>
+    </div>
+    <div class="dl-card">
+      <h3>Lid (with Apple Logo)</h3>
+      <div class="dims">135.4 &times; 135.4 &times; 22.2 mm</div>
+      <div class="meta">407 KB &bull; Watertight &#10003;</div>
+      <a href="pelican_lid.stl" download class="dl-btn">Download STL</a>
+    </div>
+    <div class="dl-card">
+      <h3>Handle</h3>
+      <div class="dims">80 &times; 14 &times; 33 mm</div>
+      <div class="meta">409 KB &bull; Watertight &#10003;</div>
+      <a href="pelican_handle.stl" download class="dl-btn">Download STL</a>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Design Features</h2>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="label">Debossed Apple Logo</div>
+        <div class="desc">0.8mm deep precision deboss centred on the lid top — visible, elegant, unmistakable</div>
+      </div>
+      <div class="feat">
+        <div class="label">Compact Form Factor</div>
+        <div class="desc">Only 4.2mm per side larger than the Mac Mini itself — minimal bulk, maximum protection</div>
+      </div>
+      <div class="feat">
+        <div class="label">Fully Sealed</div>
+        <div class="desc">No port holes, no ventilation — this is a transport case, not an operating enclosure</div>
+      </div>
+      <div class="feat">
+        <div class="label">Pelican-Style Latches</div>
+        <div class="desc">Two front snap latches with pivoting arms — secure positive closure</div>
+      </div>
+      <div class="feat">
+        <div class="label">Piano Hinges</div>
+        <div class="desc">Interlocking knuckle hinges on the rear accept M2.5 pin rod for smooth open/close</div>
+      </div>
+      <div class="feat">
+        <div class="label">Bolted Arch Handle</div>
+        <div class="desc">Separate printed piece with comfort grip grooves — mounts with M4 bolts through lid</div>
+      </div>
+      <div class="feat">
+        <div class="label">Interior Cradle Ribs</div>
+        <div class="desc">Precision support rails hold the Mac Mini centred — no foam needed</div>
+      </div>
+      <div class="feat">
+        <div class="label">Pressure Equalization</div>
+        <div class="desc">2mm valve hole in rear wall prevents vacuum seal — lid opens smoothly every time</div>
+      </div>
+      <div class="feat">
+        <div class="label">Tongue &amp; Groove Seal</div>
+        <div class="desc">Alignment ledge at split line for precise closure and dust resistance</div>
+      </div>
+      <div class="feat">
+        <div class="label">Luxury Accent Groove</div>
+        <div class="desc">Thin perimeter groove around all four faces — subtle detail that elevates the look</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h2>Print &amp; Assembly</h2>
+
+    <h3>Material</h3>
+    <ul>
+      <li><strong>PETG</strong> or <strong>ABS</strong> recommended — latches need flex resistance</li>
+      <li>Matte black PETG for the premium look</li>
+      <li>PLA works but latch arms may snap over time</li>
+    </ul>
+
+    <h3>Settings</h3>
+    <ul>
+      <li>Layer height: <strong>0.2mm</strong> (0.12mm for crisper Apple logo)</li>
+      <li>Infill: <strong>20-30%</strong> gyroid</li>
+      <li>Walls: <strong>3-4 perimeters</strong></li>
+      <li>Supports: <strong>NOT needed</strong> — all parts print flat</li>
+      <li>Estimated: ~3-4 hours bottom, ~2-3 hours lid, ~1 hour handle</li>
+    </ul>
+
+    <h3>Assembly</h3>
+    <ul>
+      <li>Thread M2.5 rod (or 1.75mm filament) through rear hinge knuckles</li>
+      <li>Bolt handle to lid with 2× M4 bolts + nuts (through lid holes)</li>
+      <li>Optional: press rubber feet into bottom recesses</li>
+      <li>Optional: sand 220-800 grit + matte clear coat for show-floor finish</li>
+    </ul>
+
+    <div class="warn">
+      Designed for <strong>Mac Mini M4 (2024)</strong> — 127 × 127 × 50mm. Clearance is 1.2mm per side. If your printer over-extrudes, scale cavity by 100.5% or sand contact surfaces.
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Designed by <span class="highlight">Jake Shore</span> + <span class="highlight">Buba</span> &bull; Source: <code>pelican_case.scad</code> (fully parametric OpenSCAD)</p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lb-img" src="">
+</div>
+
+<!-- THREE.JS 3D VIEWER -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+
+let scene, camera, renderer, controls;
+let meshes = {};
+let currentView = 'bottom';
+const viewer = document.getElementById('viewer');
+
+const MODELS = {
+  bottom: { file: 'pelican_bottom.stl', color: 0x2a2a2a, offset: [0, 0, 0] },
+  lid:    { file: 'pelican_lid.stl',    color: 0x3a3a3a, offset: [0, 0, 0] },
+  handle: { file: 'pelican_handle.stl', color: 0x555555, offset: [0, 0, 0] },
+};
+
+function init() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0d0d0d);
+
+  camera = new THREE.PerspectiveCamera(40, viewer.clientWidth / viewer.clientHeight, 0.1, 2000);
+  camera.position.set(200, 150, 200);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  viewer.insertBefore(renderer.domElement, viewer.firstChild);
+
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.target.set(0, 0, 0);
+  controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+  controls.rotateSpeed = 0.7;
+  controls.minDistance = 60;
+  controls.maxDistance = 500;
+
+  renderer.domElement.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+  renderer.domElement.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+
+  // Lighting — dramatic studio setup
+  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+
+  const key = new THREE.DirectionalLight(0xffffff, 1.0);
+  key.position.set(120, 250, 180);
+  scene.add(key);
+
+  const fill = new THREE.DirectionalLight(0x6677ff, 0.35);
+  fill.position.set(-150, 80, -100);
+  scene.add(fill);
+
+  const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+  rim.position.set(0, -80, -150);
+  scene.add(rim);
+
+  // Subtle floor grid
+  const grid = new THREE.GridHelper(300, 30, 0x181818, 0x141414);
+  grid.position.y = -30;
+  scene.add(grid);
+
+  window.addEventListener('resize', onResize);
+  animate();
+
+  // Preload all models
+  const loader = new STLLoader();
+  for (const [key, cfg] of Object.entries(MODELS)) {
+    loader.load(cfg.file, geo => {
+      geo.computeVertexNormals();
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: cfg.color,
+        roughness: 0.65,
+        metalness: 0.1,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.4,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      geo.computeBoundingBox();
+      const c = new THREE.Vector3();
+      geo.boundingBox.getCenter(c);
+      mesh.position.sub(c);
+      mesh.visible = (key === 'bottom');
+      scene.add(mesh);
+      meshes[key] = mesh;
+    }, null, () => {
+      document.getElementById('fallback-img').style.display = 'block';
+    });
+  }
+
+  // Hide loading hint after a bit
+  setTimeout(() => {
+    const hint = document.getElementById('viewer-hint');
+    const isMobile = 'ontouchstart' in window;
+    hint.textContent = isMobile ? 'touch: rotate · pinch: zoom' : 'drag: rotate · scroll: zoom · right-drag: pan';
+    setTimeout(() => hint.style.opacity = '0', 4000);
+  }, 1500);
+}
+
+function onResize() {
+  camera.aspect = viewer.clientWidth / viewer.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+window.showModel = function(which) {
+  document.querySelectorAll('.vbtn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-model="${which}"]`)?.classList.add('active');
+
+  const showAll = which === 'all';
+  for (const [key, mesh] of Object.entries(meshes)) {
+    if (showAll) {
+      mesh.visible = true;
+      // Stack them for 'all' view
+      if (key === 'bottom') mesh.position.y = 0;
+      if (key === 'lid') mesh.position.y = 20;
+      if (key === 'handle') mesh.position.y = 40;
+    } else {
+      mesh.visible = (key === which);
+      mesh.position.y = 0;
+    }
+  }
+};
+
+window.resetCamera = function() {
+  camera.position.set(200, 150, 200);
+  controls.target.set(0, 0, 0);
+  controls.update();
+};
+
+try { init(); } catch(e) {
+  console.error(e);
+  document.getElementById('fallback-img').style.display = 'block';
+  viewer.style.display = 'none';
+}
+</script>
+
+<!-- LIGHTBOX JS -->
+<script>
+function openLightbox(img) {
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
